@@ -1,0 +1,23 @@
+{% extends 'main.html' %}
+
+{% block content %}
+    <h1> csgo.supply home </h1>
+    
+    <div> 
+        <div>
+            {% for skin in skins %}
+                <div>
+                    <a href="{% url 'details' skin.fullname %}">
+                    <h5>Type: {{skin.type}} -- Weapon: {{skin.fullname}}</h5>
+                    </a>
+                </div>
+            {% endfor %}
+
+        </div>
+    </div>
+
+
+
+
+
+{% endblock content %}

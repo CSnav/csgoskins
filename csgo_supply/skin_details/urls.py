@@ -17,5 +17,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path("", views.details, name="skin-details-home"),
+    path('', views.home, name='home'),
+    path('details/<str:skinid>/', views.details, name='details'),
+    path('details/', views.home),
 ]

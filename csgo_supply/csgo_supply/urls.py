@@ -19,13 +19,11 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 
-def home(request):
-    return render(request, "home.html")
+
 # Create your views here.
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('details/', include("skin_details.urls")),
-    path('', home, name='home')
+    path('', include("skin_details.urls"), name='home')
 ]
