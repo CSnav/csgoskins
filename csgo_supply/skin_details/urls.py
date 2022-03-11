@@ -13,19 +13,9 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path, include
-from django.shortcuts import render
-from django.http import HttpResponse
-
-
-def home(request):
-    return render(request, "home.html")
-# Create your views here.
-
+from django.urls import path
+from . import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('details/', include("skin_details.urls")),
-    path('', home, name='home')
+    path("", views.details, name="skin-details-home"),
 ]
