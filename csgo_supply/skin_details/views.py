@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import GunSkin, KnifeSkin, GloveSkin
+from .models import GunSkin, KnifeSkin, GloveSkin, SavedList
+from .forms import ListForm
 
 skins = [
     {'type':'rifle', 'weapon':'ak47', 'finish':'Predator', 'fullname': 'AK-47 | Predator','listings':1},
@@ -15,9 +16,20 @@ def home(request):
     context = {'skins': skins}
     return render(request, "skin_details/home.html", context)
 
-def list(request, listid):
-    list = list.objects.get(pk=listid)
-    return render(request, "skin_details/list.html")
+def List(request, pk):
+    skinlist = SavedList.objects.get(pk=pk)
+    context = {'skinlist': skinlist}
+    return render(request, "skin_details/list.html", context)
+
+def CreateList(request):
+    form = ListForm()
+    if request.method == 'POST':
+        form = ListForm(request.POST)
+        if form.is_valid():
+            form = form.save()
+            return redirect('list', pk=form.pk)
+    context = {'form': form}
+    return render(request, 'skin_details/list_form.html', context)
     
 def gloveList(request):
     gloves = GloveSkin.objects.all() 

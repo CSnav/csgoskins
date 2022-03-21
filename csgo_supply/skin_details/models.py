@@ -49,14 +49,13 @@ class KnifeSkin(models.Model):
     def __str__(self):
         return self.name
 
-class List(models.Model):
-    listid = models.BigIntegerField()
-    guns = models.ManyToManyField(GunSkin)
-    knives = models.ManyToManyField(KnifeSkin)
-    gloves = models.ManyToManyField(GloveSkin)
+class SavedList(models.Model):
+    guns = models.ManyToManyField(GunSkin, blank=True)
+    knives = models.ManyToManyField(KnifeSkin, blank=True)
+    gloves = models.ManyToManyField(GloveSkin, blank=True)
 
     def __str__(self):
-        return self.listid
+        return str(self.pk)
 
 
 

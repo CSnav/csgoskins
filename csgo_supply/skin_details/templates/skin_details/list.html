@@ -5,14 +5,20 @@
     
     <div> 
         <h2>Gloves: </h2>
-        {% for glove in List.gloves.all %}
-            <h3>{{glove.name}}</h3>
+        {% for glove in skinlist.gloves.all %}
+            <a href = "{%url 'glove-details' glove.name %}">
+            <h3>{{glove.name}}</h3></a>
+            {% endfor %}
         <h2>Knives: </h2>
-        {% for knife in List.knives.all %}
-            <h3>{{knife.name}}</h3>
+        {% for knife in skinlist.knives.all %}
+        <a href = "{%url 'knife-details' knife.name %}">
+            <h3>{{knife.name}}</h3></a>
+            {% endfor %}
         <h2>Guns: </h2>
-        {% for gun in List.guns.all %}
-            <h3>{{gun.name}}</h3>
+        {% for gun in skinlist.guns.all %}
+        <a href = "{%url 'gun-details' gun.name %}">
+            <h3>{{gun.name}}</h3></a>
+            {% endfor %}
     </div>
 
 

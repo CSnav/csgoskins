@@ -1,9 +1,19 @@
 {% extends 'main.html' %}
 
 {% block content %}
-    <h1> csgo.supply home </h1>
-    
-    <div> 
+    <div>
+        <h2><a href="{% url 'glove-list' %}"> Glove List </a></h2>
+    </div>
+    <div>
+        <h2><a href="{% url 'knife-list' %}"> Knife List </a></h2>
+    </div>
+    <div>
+        <h2><a href="{% url 'gun-list' %}"> Gun List </a></h2>
+    </div>
+    <div>
+        <h2><a href="{% url 'list-form' %}"> List Creator </a></h2>
+    </div>
+    {% comment %} <div> 
         <div>
             {% for skin in skins %}
                 <div>
@@ -14,7 +24,7 @@
             {% endfor %}
 
         </div>
-    </div>
+    </div> {% endcomment %}
 
 
 
