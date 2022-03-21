@@ -14,6 +14,9 @@ class GunSkin(models.Model):
     rarity = models.CharField(max_length=20)
     rarity_color = models.CharField(max_length=10)
 
+    class Meta:
+        ordering = ['name']
+
     def __str__(self):
         return self.name
 
@@ -23,6 +26,9 @@ class GloveSkin(models.Model):
     type = models.CharField(max_length=10)
     rarity = models.CharField(max_length=20)
     rarity_color = models.CharField(max_length=10)
+
+    class Meta:
+        ordering = ['name']
 
     def __str__(self):
         return self.name
@@ -37,8 +43,20 @@ class KnifeSkin(models.Model):
     rarity = models.CharField(max_length=20)
     rarity_color = models.CharField(max_length=10)
 
+    class Meta:
+        ordering = ['name']
+
     def __str__(self):
         return self.name
+
+class List(models.Model):
+    listid = models.BigIntegerField()
+    guns = models.ManyToManyField(GunSkin)
+    knives = models.ManyToManyField(KnifeSkin)
+    gloves = models.ManyToManyField(GloveSkin)
+
+    def __str__(self):
+        return self.listid
 
 
 

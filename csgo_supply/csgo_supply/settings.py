@@ -78,8 +78,12 @@ WSGI_APPLICATION = 'csgo_supply.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'csgo-skins-db',
+        'USER': 'freshman',
+        'PASSWORD': 'hariprabu',
+        'HOST': 'csgo-supply-db.csxluy76enyk.us-east-2.rds.amazonaws.com',
+        'PORT': '5432',
     }
 }
 

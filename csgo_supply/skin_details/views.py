@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-
+from .models import GunSkin, KnifeSkin, GloveSkin
 
 skins = [
     {'type':'rifle', 'weapon':'ak47', 'finish':'Predator', 'fullname': 'AK-47 | Predator','listings':1},
@@ -15,11 +15,37 @@ def home(request):
     context = {'skins': skins}
     return render(request, "skin_details/home.html", context)
 
-def details(request, skinid):
-    skin = None
-    for i in skins:
-        if i['fullname'] == skinid:
-            skin = i
-    context = {'skin':skin}
-    return render(request, "skin_details/details.html",context)
+def list(request, listid):
+    list = list.objects.get(pk=listid)
+    return render(request, "skin_details/list.html")
+    
+def gloveList(request):
+    gloves = GloveSkin.objects.all() 
+    context = {'gloves': gloves}
+    return render(request, "skin_details/lists/gloveList.html", context)
+
+def knifeList(request):
+    knives = KnifeSkin.objects.all() 
+    context = {'knives': knives}
+    return render(request, "skin_details/lists/knifeList.html", context)
+
+def gunList(request):
+    guns = GunSkin.objects.all() 
+    context = {'guns': guns}
+    return render(request, "skin_details/lists/gunList.html", context)
+
+def gunDetails(request, skinid):
+    gun = GunSkin.objects.get(name=skinid)
+    context = {'gun':gun}
+    return render(request, "skin_details/details/gunDetails.html",context)
+
+def knifeDetails(request, skinid):
+    knife = KnifeSkin.objects.get(name=skinid)
+    context = {'knife':knife}
+    return render(request, "skin_details/details/knifeDetails.html",context)
+
+def gloveDetails(request, skinid):
+    glove = GloveSkin.objects.get(name=skinid)
+    context = {'glove':glove}
+    return render(request, "skin_details/details/gloveDetails.html",context)
 # Create your views here.

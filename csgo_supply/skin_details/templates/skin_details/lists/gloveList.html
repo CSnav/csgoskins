@@ -1,0 +1,23 @@
+{% extends 'main.html' %}
+
+{% block content %}
+    <h1> csgo.supply home </h1>
+    
+    <div> 
+        <div>
+            {% for glove in gloves %}
+                <div>
+                    <a href="{% url 'glove-details' glove.name %}">
+                    <h5>{{glove.name}}</h5>
+                    </a>
+                </div>
+            {% endfor %}
+
+        </div>
+    </div>
+
+
+
+
+
+{% endblock content %}

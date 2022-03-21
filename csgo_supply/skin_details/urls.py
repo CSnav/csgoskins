@@ -18,6 +18,11 @@ from . import views
 
 urlpatterns = [
     path('', views.home, name='home'),
-    path('details/<str:skinid>/', views.details, name='details'),
-    path('details/', views.home),
+    path('details/gun/list/', views.gunList, name='gun-list'),
+    path('details/gun/<str:skinid>/', views.gunDetails, name='gun-details'),
+    path('details/knife/list/', views.knifeList, name='knife-list'),
+    path('details/knife/<str:skinid>/', views.knifeDetails, name='knife-details'),
+    path('details/glove/list/', views.gloveList, name='glove-list'),
+    path('details/glove/<str:skinid>/', views.gloveDetails, name='glove-details'),
+    path('details/<str:skinid>/', views.gloveDetails, name="details")
 ]
