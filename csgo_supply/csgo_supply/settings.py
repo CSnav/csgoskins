@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -79,10 +80,10 @@ WSGI_APPLICATION = 'csgo_supply.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'csgo-skins-db',
-        'USER': 'freshman',
-        'PASSWORD': 'hariprabu',
-        'HOST': 'csgo-supply-db.csxluy76enyk.us-east-2.rds.amazonaws.com',
+        'NAME': os.environ.get("POSTGRES_NAME"),
+        'USER': os.environ.get("POSTGRES_USER"),
+        'PASSWORD': os.environ.get("POSTGRES_PASSWORD"),
+        'HOST': os.environ.get("POSTGRES_URL"),
         'PORT': '5432',
     }
 }
