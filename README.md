@@ -63,39 +63,3 @@ We will be using various public APIs to gather data like market prices, the type
 ## Displaying the Data
 
 Prices will be shown along with their specific listings across multiple buy/sell websites. We also may implement a currency feature where users can change their native currency to get accurate prices. Trend graphs will also be shown for each skin where users can view the increase/decrease in market value over time.
-
-# Work Plan
-
-Our work will be divided as follows:
-
--   Arnav (UIUC)
-
-	-   Front-end/User Interface Design
-    
-	-   API calls
-    
-	-   Price-trend graphs
-    
-	-   Analytics / Domain management
-    
-
--   Devan (CMU)
-    
-
-	-   Back-end coding with Python
-    
-	-   Django setup
-    
-	- Database management
-    
-
--   Abhi (IU Kelley)
-    
-
-	- Feature Implementation Testing
-    
-	-   Back-end Python
-    
-	-   Filters
-    
-	-   Game knowledge and guidance
