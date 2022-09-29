@@ -21,7 +21,7 @@
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
-  font-size: 17px;
+  font-size: 25px;
 }
 /* Change the color of links on hover */
 .topnav a:hover {
@@ -36,7 +36,7 @@
 
 .topnav-right {
   margin-top: 40px;
-  margin-right: 40px;
+  margin-right: 80px;
   float: right;
   position: relative;
   z-index: 1001;
@@ -46,6 +46,8 @@ body{
   display: inline-block;
   padding: 0;
   margin: 0;
+    width: 100%;
+height: 100%;
   position: absolute;
   z-index: -1;
 }
@@ -69,9 +71,10 @@ html {
 .dropbtn {
   padding: 14px 16px 16px 16px;
   background: rgba(255, 255, 255, 0);
-  color: rgba(255, 255, 255, 1); 
+  color: #f2f2f2;
   font-family: "Antic", sans-serif;
-  font-size: 17px;
+  font-size: 25px;
+  text-decoration: none;
   border: none;
 }
 
@@ -102,11 +105,28 @@ html {
   text-decoration: none;
   display: block;
 }
-
+.main {
+    height: 100%;
+    width: 100%;
+}
 .big-home-rectangle {
-  height: 50px;
-  width: 100px;
-  background-color: #555;
+margin-top: 1.5%;
+margin-left: 3%;  
+height: 30%;
+border-radius: 25px;
+  width: 94%;
+ background-color: #303030;
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.createloadouts {
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width: 94%;
+    margin-left: 3%;
+    margin-top: 2%;
+    height: auto;
+    border-radius: 25px;
+    background-color: rgba(255, 255, 255, 0);
 }
 /* Change color of dropdown links on hover */
 .dropdown-content a:hover {background-color: #ddd;}
