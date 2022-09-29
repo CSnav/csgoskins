@@ -1,9 +1,24 @@
 {% load static %}
+<link rel="stylesheet" href="{% static 'skin_details/css/style.css' %}">
+<link rel="svg" href="{% static 'skin_details/img/navbar_logo.svg' %}">
 
 
-<a href="/">
-    <h1><img src="{% static 'skin_details/logo.png' %}" alt="Logo" width="430" height="100">
-    </h1>
-</a>
-
-<hr>
+<div class="topnav">
+  <a href="/" class="navlogo"><img src="{% static 'skin_details/img/navbar_logo.svg' %}" alt="Logo" height="100">
+  </a>
+  <div class="topnav-right">
+    
+   <div class="dropdown">
+  <button class="dropbtn">BROWSE</button>
+  <div class="dropdown-content">
+    <a href="{% url 'gun-list' %}">Guns</a>
+    <a href="{% url 'knife-list' %}">Knives</a>
+    <a href="{% url 'glove-list' %}">Gloves</a>
+  </div>
+</div> 
+    <a href="#news" class="navelem" style="color: rgba(255, 255, 255, 0);">BROWSE</a>
+    <a href="#contact" class="navelem">BUILDER</a>
+    <a href="#about" class="navelem">ABOUT</a>
+</div>
+  </div>
+</div>

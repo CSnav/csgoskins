@@ -7,9 +7,9 @@
         <div>
             {% for gun in guns %}
                 <div>
-                    <a href="{% url 'gun-details' gun.name %}">
-                    <h5>{{gun.name}}</h5>
-                    </a>
+<h5>                    <a href="{% url 'gun-details' gun.name %}">
+    {{gun.name}}
+                    </a></h5>
                 </div>
             {% endfor %}
 

@@ -25,5 +25,6 @@ urlpatterns = [
     path('details/glove/list/', views.gloveList, name='glove-list'),
     path('details/glove/<str:skinid>/', views.gloveDetails, name='glove-details'),
     path('list/<int:pk>/', views.List, name='list'),
-    path('list/', views.CreateList, name='list-form')
+    path('list/', views.CreateList, name='list-form'),
+    path('lists/all/', views.JsonList, name='all-lists')
 ]

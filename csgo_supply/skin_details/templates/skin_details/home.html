@@ -1,6 +1,7 @@
 {% extends 'main.html' %}
 
 {% block content %}
+<div class="main">
     <div>
         <h2><a href="{% url 'glove-list' %}"> Glove List </a></h2>
     </div>
@@ -13,6 +14,7 @@
     <div>
         <h2><a href="{% url 'list-form' %}"> List Creator </a></h2>
     </div>
+</div>
     {% comment %} <div> 
         <div>
             {% for skin in skins %}

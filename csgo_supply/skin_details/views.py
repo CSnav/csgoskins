@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import GunSkin, KnifeSkin, GloveSkin, SavedList
 from .forms import ListForm
+from django.core import serializers
 
 skins = [
     {'type':'rifle', 'weapon':'ak47', 'finish':'Predator', 'fullname': 'AK-47 | Predator','listings':1},
@@ -61,3 +62,7 @@ def gloveDetails(request, skinid):
     context = {'glove':glove}
     return render(request, "skin_details/details/gloveDetails.html",context)
 # Create your views here.
+
+def JsonList(request):
+    data = serializers.serialize('json',SavedList.objects.all())
+    return HttpResponse(data, content_type='application/json')

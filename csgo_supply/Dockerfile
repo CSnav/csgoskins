@@ -4,4 +4,3 @@ WORKDIR /csgo_supply
 COPY requirements.txt /csgo_supply/
 RUN pip install -r requirements.txt
 COPY . /csgo_supply/
-
