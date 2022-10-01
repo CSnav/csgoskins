@@ -54,8 +54,8 @@ def processGun(raw_payload, pk):
     formatted_payload['fields']['exterior'] = raw_payload.get("exterior", "")
     formatted_payload['fields']['rarity'] = raw_payload.get("rarity", "")
     formatted_payload['fields']['rarity_color'] = raw_payload.get("rarity_color", "")
-    formatted_payload['fields']['stattrak'] = raw_payload.get("stattrak", 0)
-    formatted_payload['fields']['souvenir'] = raw_payload.get("souvenir", 0)
+    formatted_payload['fields']['stattrak'] = True if raw_payload.get("stattrak", 0) == 1 else False
+    formatted_payload['fields']['souvenir'] = True if raw_payload.get("souvenir", 0) == 1 else False
     name = raw_payload.get("name", "")
     formatted_payload['fields']['name'] = name 
     # if(r'\u2605 ' in name):
@@ -84,7 +84,7 @@ def processKnife(raw_payload, pk):
     formatted_payload['fields']['exterior'] = raw_payload.get("exterior", "")
     formatted_payload['fields']['rarity'] = raw_payload.get("rarity", "")
     formatted_payload['fields']['rarity_color'] = raw_payload.get("rarity_color", "")
-    formatted_payload['fields']['stattrak'] = raw_payload.get("stattrak", 0)
+    formatted_payload['fields']['stattrak'] = True if raw_payload.get("stattrak", 0) == 1 else False
     name = raw_payload.get("name", "")
     formatted_payload['fields']['name'] = name 
     if("Battle-Scarred" in name):

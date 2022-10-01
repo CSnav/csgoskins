@@ -1,17 +1,17 @@
 {% extends 'main.html' %}
 
 {% block content %}
-<div class="main">   
- <h1> Glove List </h1>
-    
-    <div> 
+<div class="main">
+    <h1> Glove List </h1>
+
+    <div>
         <div>
             {% for glove in gloves %}
-                <div>
-                    <a href="{% url 'glove-details' glove.name %}">
+            <div>
+                <a href="{% url 'glove-details' glove.name %}">
                     <h5>{{glove.name}}</h5>
-                    </a>
-                </div>
+                </a>
+            </div>
             {% endfor %}
 
         </div>

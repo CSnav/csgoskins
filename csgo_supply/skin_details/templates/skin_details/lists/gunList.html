@@ -1,23 +1,48 @@
 {% extends 'main.html' %}
-
+{% load gun_extras %}
 {% block content %}
-    <h1> csgo.supply home </h1>
-    
-    <div> 
-        <div>
-            {% for gun in guns %}
-                <div>
-<h5>                    <a href="{% url 'gun-details' gun.name %}">
-    {{gun.name}}
-                    </a></h5>
-                </div>
-            {% endfor %}
 
-        </div>
+
+<div class="weaponslist">
+<div class="weaponslistleft">
+
+<form action="{% url 'gun-list' %}" method="get">
+    {{ form.as_p }}
+    <input type="submit" value="OK">
+</form>
+</div>
+<div class="weaponslistright">
+<div class="weaponlistheader">Guns</div>
+
+<div class="guns">
+<table class="gunlist" summary="gunlist">
+<tr><th>Gun Name</th><th>Exterior</th><th>Gun Type</th><th>Price</th>
+{% for gun in page_obj %}
+        <tr><td> <a href="{% url 'gun-details' gun.name %}">{{ gun.name }}</a></td><td>{{ gun.exterior }}</td><td>{{ gun.gun_type }}</td><td>0.00</td></tr>
+{% endfor %}
+</table>
     </div>
 
 
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+            <a href="?{% param_replace page=1 %}">&laquo; first</a>
+            <a href="?{% param_replace page=page_obj.previous_page_number %}">previous</a>
+            {% endif %}
 
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
 
-
-{% endblock content %}
+            {% if page_obj.has_next %}
+            <a href="?{% param_replace page=page_obj.next_page_number %}">next</a>
+            <a href="?{% param_replace page=page_obj.paginator.num_pages %}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+</div>
+</div>
+</div>
+</div>
+    {% endblock content %}

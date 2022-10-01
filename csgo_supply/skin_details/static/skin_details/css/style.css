@@ -1,127 +1,132 @@
 @font-face {
-  font-family: 'Antic';
-  src: local('Antic'),
-    url('/static/skin_details/fonts/Antic-Regular.ttf') format("truetype");
+    font-family: 'Antic';
+    src: local('Antic'),
+        url('/static/skin_details/fonts/Antic-Regular.ttf') format("truetype");
 }
 
 /* Add a black background color to the top navigation */
 .topnav {
-  vertical-align: middle;
-  background: linear-gradient(140deg, rgba(253, 0, 255, 0.7) 0%, rgba(0, 218, 222, 0.7) 110%);
-  box-shadow: 0px 5px 15px rgb(0 0 0 / 30%) !important;
-  backdrop-filter: blur(12px) !important;
- -webkit-backdrop-filter: blur(12px) !important;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 10;
+    vertical-align: middle;
+    background: linear-gradient(140deg, rgba(253, 0, 255, 0.7) 0%, rgba(0, 218, 222, 0.7) 110%);
+    box-shadow: 0px 5px 15px rgb(0 0 0 / 30%) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10;
 }
+
 .topnav a {
-  float: left;
-  vertical-align: middle;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 25px;
+    float: left;
+    vertical-align: middle;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 25px;
 }
+
 /* Change the color of links on hover */
 .topnav a:hover {
-  color: black;
+    color: black;
 }
 
 /* Add a color to the active/current link */
 .topnav a.active {
-  background-color: #04AA6D;
-  color: white;
+    background-color: #04AA6D;
+    color: white;
 }
 
 .topnav-right {
-  margin-top: 40px;
-  margin-right: 80px;
-  float: right;
-  position: relative;
-  z-index: 1001;
+    margin-top: 40px;
+    margin-right: 80px;
+    float: right;
+    position: relative;
+    z-index: 1001;
 }
 
-body{
-  display: inline-block;
-  padding: 0;
-  margin: 0;
+body {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
     width: 100%;
-height: 100%;
-  position: absolute;
-  z-index: -1;
+    height: 100%;
+    position: absolute;
+    z-index: -1;
 }
 
 html {
-  background-color: rgb(50, 50, 50);
- padding: 0;
-  margin: 0;
-  margin-top: 150px;
+    background-color: rgb(50, 50, 50);
+    padding: 0;
+    margin: 0;
+    margin-top: 150px;
 }
 
 .navelem {
-  display: inline-block;
-  vertical-align: middle;
-  margin: 0;
-  padding-top: 50px;
-  text-align: center;
-  font-family: "Antic", sans-serif;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0;
+    padding-top: 50px;
+    text-align: center;
+    font-family: "Antic", sans-serif;
 }
+
 /* Dropdown Button */
 .dropbtn {
-  padding: 14px 16px 16px 16px;
-  background: rgba(255, 255, 255, 0);
-  color: #f2f2f2;
-  font-family: "Antic", sans-serif;
-  font-size: 25px;
-  text-decoration: none;
-  border: none;
+    padding: 14px 16px 16px 16px;
+    background: rgba(255, 255, 255, 0);
+    color: #f2f2f2;
+    font-family: "Antic", sans-serif;
+    font-size: 25px;
+    text-decoration: none;
+    border: none;
 }
 
 /* The container <div> - needed to position the dropdown content */
 .dropdown {
-  position: fixed;
-  display: inline-block;
-  z-index: 1000;
+    position: fixed;
+    display: inline-block;
+    z-index: 1000;
 }
 
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f1f1f1;
-  min-width: 95px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  font-family: "Antic", sans-serif;
-  z-index: 10101;
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 95px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    font-family: "Antic", sans-serif;
+    z-index: 10101;
 }
 
 /* Links inside the dropdown */
 .dropdown-content a {
-  color: black;
-  width: 95px;
-  padding: 12px 16px;
-  font-family: "Antic", sans-serif;
-  text-decoration: none;
-  display: block;
+    color: black;
+    width: 95px;
+    padding: 12px 16px;
+    font-family: "Antic", sans-serif;
+    text-decoration: none;
+    display: block;
 }
+
 .main {
     height: 100%;
     width: 100%;
 }
+
 .big-home-rectangle {
-margin-top: 1.5%;
-margin-left: 3%;  
-height: 30%;
-border-radius: 25px;
-  width: 94%;
- background-color: #303030;
-box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2), 0 0 20px 0 rgba(0, 0, 0, 0.19);
+    margin-top: 1.5%;
+    margin-left: 3%;
+    height: 30%;
+    border-radius: 25px;
+    width: 94%;
+    background-color: #303030;
+    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2), 0 0 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.big-home-rectangle h1{
+.big-home-rectangle h1 {
     font-family: "Antic", sans-serif;
     color: white;
     padding-left: 3%;
@@ -131,7 +136,7 @@ box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2), 0 0 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .createloadouts {
-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     width: 94%;
     margin-left: 3%;
     margin-top: 2%;
@@ -139,11 +144,46 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 25px;
     background-color: rgba(255, 255, 255, 0);
 }
+
 /* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #ddd;}
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
 
 /* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {display: block;}
+.dropdown:hover .dropdown-content {
+    display: block;
+}
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {background-color: rgba(255, 255, 255, 0); color: black;}
+.dropdown:hover .dropbtn {
+    background-color: rgba(255, 255, 255, 0);
+    color: black;
+}
+
+.weaponlistheader {
+    color: white;
+    font-family: "Antic", sans-serif;
+    font-size: 70px;
+    text-align: center;
+    font-weight: normal;
+}
+
+.pagination a{
+    color: white;
+    font-family: "antic", sans-serif;
+}
+
+.current{
+    color: white;
+    font-family: "antic", sans-serif;
+}
+
+.gunlist{
+    color: white;
+    font-family: "antic", sans-serif;
+}
+
+.gunlist a{
+    color: white;
+}

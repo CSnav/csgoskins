@@ -3,15 +3,18 @@
 {% load static %}
 
 <html>
-    <head>
-        <title>CSGO.Supply loadout creator</title>
-        <link rel="icon" type="image/x-icon" href="{% static 'skin_details/img/favicon.ico' %}"> 
-    </head>
-    <body>
-        {% include 'navbar.html' %}
 
-        {% block content %}
+<head>
+    <title>CSGO.Supply loadout creator</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'skin_details/img/favicon.ico' %}">
+</head>
 
-        {% endblock %}
-    </body>
+<body>
+    {% include 'navbar.html' %}
+
+    {% block content %}
+
+    {% endblock %}
+</body>
+
 </html>

@@ -1,20 +1,20 @@
 {% extends 'main.html' %}
 
 {% block content %}
-    <h1> Knife List </h1>
-    
-    <div> 
-        <div>
-            {% for knife in knives %}
-                <div>
-                    <a href="{% url 'knife-details' knife.name %}">
-                    <h5>{{knife.name}}</h5>
-                    </a>
-                </div>
-            {% endfor %}
+<h1> Knife List </h1>
 
+<div>
+    <div>
+        {% for knife in knives %}
+        <div>
+            <a href="{% url 'knife-details' knife.name %}">
+                <h5>{{knife.name}}</h5>
+            </a>
         </div>
+        {% endfor %}
+
     </div>
+</div>
 
 
 
