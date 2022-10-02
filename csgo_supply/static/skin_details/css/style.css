@@ -183,3 +183,23 @@ html {
     color: white;
     font-family: "antic", sans-serif;
 }
+
+.gunlist a{
+    color: white;
+}
+
+.weaponslist{
+    display: inline-block;
+    width: 100%;
+}
+
+.weaponslistleft{
+    width: 15%;
+    display: inline-block;
+}
+
+.weaponslistright{
+    width:80%;
+    vertical-align: top;
+    display: inline-block;
+}

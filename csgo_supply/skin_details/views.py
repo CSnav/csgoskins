@@ -4,7 +4,7 @@ from .models import GunSkin, KnifeSkin, GloveSkin, SavedList
 from .forms import ListForm, GunExteriorFilterForm
 from django.core import serializers
 from django.core.paginator import Paginator
-
+from .options import EX_CHOICES, KN_CHOICES, WT_CHOICES, GT_CHOICES
 
 def home(request):
     return render(request, "skin_details/home.html")
@@ -41,15 +41,23 @@ def knifeList(request):
 
 def gunList(request):
     params = {'gun_type': request.GET.get('gun_type') or None,
-              'exterior': request.GET.get('exterior') or None,
+              'exterior': request.GET.getlist('exterior') or None,
               'souvenir': request.GET.get('souvenir') or None,
               'weapon_type': request.GET.get('weapon_type') or None,
               'stattrak': request.GET.get('stattrak') or None,
               'rarity': request.GET.get('rarity') or None}
+
     filtered_params = {}
+    filter_options = {'exterior': EX_CHOICES,
+                      'gun_type': GT_CHOICES,
+                      'weapon_type': WT_CHOICES,
+                      'souvenir': [True, False],
+                      'stattrak': [True, False]}
+    print(params['exterior'])
     for key in params:
         if(params[key]):
             filtered_params[key] = params[key]
+    print('fp', filtered_params)
     if(filtered_params):
         guns = GunSkin.objects.filter(**filtered_params)
     else:
@@ -60,8 +68,8 @@ def gunList(request):
     form = GunExteriorFilterForm()
     return render(
          request, 'skin_details/lists/gunList.html',
-         {'form': form, 'page_obj': page_obj, })
-    return render(request, 'skin_details/lists/gunList.html', {'page_obj': page_obj})
+         {'form': form, 'page_obj': page_obj, 'filters': filter_options})
+    return render(request, 'skin_details/lists/gunList.html', {'page_obj': page_obj, 'filters': filters})
 
 
 def gunDetails(request, skinid):
