@@ -3,22 +3,21 @@
 {% block content %}
 
 
-<div class="weaponslist">
-    <div class="weaponslistleft">
-
+<div class="weaponslist" onload="updateUI();">
+        <div class="weaponlistheader">Guns</div>
+    <div class="weaponslistleft" onload="updateUI();">
 
         <ul class="filter-list" id="m_set">
-            <li class="filter-row-all"><input type="checkbox" class="checkbox" id="m_all"><label for="m_all">All</label>
-            </li>
+    <h3 style="font-size: 30px; text-align: center;"> Filters</h3>
+    <h5 style="font-size: 18px; margin-bottom: 3px;"> Exterior </h5>
             {% for key in filters.exterior %}
-            <li class="filter-row-single  "><input type="checkbox" onclick="redirect(this)" class="checkbox filteritem" id="box_{{ key }}"
+            <li class="filter-row-single  "><input type="checkbox" onclick="redirect(this); updateUI();" class="checkbox filteritem" id="box_{{ key }}"
                 value="exterior={{ key }}"  data-value-id="box_{{ key }}_val"><label for="box_{{ key }}">{{ key }}</label></li>
             {% endfor %}
         </ul>
 
         <ul class="filter-list" id="m_set">
-            <li class="filter-row-all"><input type="checkbox" class="checkbox" id="m_all"><label for="m_all">All</label>
-            </li>
+    <h5 style="font-size: 18px; margin-bottom: 3px;"> Gun </h5>
             {% for key in filters.gun_type %}
             <li class="filter-row-single  "><input type="checkbox" onclick="redirect(this)" class="checkbox filteritem" id="box_{{ key }}"
              value="gun_type={{ key }}" data-value-id="box_{{ key }}_val"><label for="box_{{ key }}">{{ key }}</label></li>
@@ -26,8 +25,7 @@
         </ul>
 
         <ul class="filter-list" id="m_set">
-            <li class="filter-row-all"><input type="checkbox" class="checkbox" id="m_all"><label for="m_all">All</label>
-            </li>
+    <h5 style="font-size: 18px; margin-bottom: 3px;"> Weapon Type </h5>
             {% for key in filters.weapon_type %}
             <li class="filter-row-single  "><input type="checkbox" onclick="redirect(this) "class="checkbox filteritem" id="box_{{ key }}"
              value="weapon_type={{ key }}" data-value-id="box_{{ key }}_val"><label for="box_{{ key }}">{{ key }}</label></li>
@@ -35,8 +33,7 @@
         </ul>
         
         <ul class="filter-list" id="m_set">
-            <li class="filter-row-all"><input type="checkbox" class="checkbox" id="m_all"><label for="m_all">All</label>
-            </li>
+    <h5 style="font-size: 18px; margin-bottom: 3px;"> Souvenir </h5>
             {% for key in filters.souvenir %}
             <li class="filter-row-single  "><input type="checkbox" onclick="redirect(this)" class="checkbox filteritem" id="box_{{ key }}"
              value="souvenir={{ key }}" data-value-id="box_{{ key }}_val"><label for="box_{{ key }}">{{ key }}</label></li>
@@ -44,8 +41,7 @@
         </ul>
 
         <ul class="filter-list" id="m_set">
-            <li class="filter-row-all"><input type="checkbox" class="checkbox" id="m_all"><label for="m_all">All</label>
-            </li>
+    <h5 style="font-size: 18px; margin-bottom: 3px;"> Stattrak </h5>
             {% for key in filters.stattrak %}
             <li class="filter-row-single  "><input type="checkbox" onclick="redirect(this)" class="checkbox filteritem" id="box_{{ key }}"
             value="stattrak={{ key }}" data-value-id="box_{{ key }}_val"><label for="box_{{ key }}">{{ key }}</label></li>
@@ -54,21 +50,27 @@
 
     </div>
     <div class="weaponslistright">
-        <div class="weaponlistheader">Guns</div>
 
         <div class="guns">
             <table class="gunlist" summary="gunlist">
                 <tr>
-                    <th>Gun Name</th>
-                    <th>Exterior</th>
-                    <th>Gun Type</th>
-                    <th>Price</th>
+                    <th style="width: 10%;">Picture</th>
+                    <th style="width: 17%;">Gun Name</th>
+                    <th style="width: 7%;">Weapon Type</th>
+                    <th style="width: 7%;">Gun</th>
+                    <th style="width: 10%;">Exterior</th>
+                    <th style="width: 7%;">Price</th>
+                    <th style="width: 7%;">Add to List</th>
+                </tr>
                     {% for gun in page_obj %}
-                <tr>
+                <tr style="background:{% cycle "#242526" "#18191A" %};">
+                   <td> <img class="tableimg" src="https://steamcommunity-a.akamaihd.net/economy/image/{{ gun.icon_url }}"></td>
                     <td> <a href="{% url 'gun-details' gun.name %}">{{ gun.name }}</a></td>
-                    <td>{{ gun.exterior }}</td>
+                    <td> {{ gun.weapon_type }} </td> 
                     <td>{{ gun.gun_type }}</td>
-                    <td>0.00</td>
+                    <td>{{ gun.exterior }}</td>
+                    <td>0.00</td></div>
+                    <td><button class="addlistbtn">Add</button></td>
                 </tr>
                 {% endfor %}
             </table>

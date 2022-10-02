@@ -42,7 +42,7 @@ MODEL_GT_CHOICES = [("CZ75-Auto", "CZ75-Auto"),
                     ("SCAR-20", "SCAR-20"),
                     ("SSG 08", "SSG 08")]
 
-MODEL_WT_CHOICES = [("Pistols", "Pistols"),
+MODEL_WT_CHOICES = [("Pistol", "Pistol"),
                     ("Heavy", "Heavy"),
                     ("Rifle", "Rifle"),
                     ("SMG", "SMG"),
@@ -109,7 +109,7 @@ GT_CHOICES = ['CZ75-Auto',
               'SCAR-20',
               'SSG 08']
 
-WT_CHOICES = ['Pistols',
+WT_CHOICES = ['Pistol',
               'Heavy',
               'Rifle',
               'SMG',

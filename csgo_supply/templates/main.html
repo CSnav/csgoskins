@@ -9,7 +9,7 @@
     <link rel="icon" type="image/x-icon" href="{% static 'skin_details/img/favicon.ico' %}">
 </head>
 
-<body>
+<body onload="updateUI();">
     {% include 'navbar.html' %}
 
     {% block content %}

@@ -180,8 +180,46 @@ html {
 }
 
 .gunlist{
+    margin-top: 30px;
     color: white;
+    align: center;
+    display: block;
     font-family: "antic", sans-serif;
+    font-size: 16px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    border: 1px solid transparent;
+    line-height: 40px;
+    overflow: visible;
+}
+/*
+.gunlist td{
+    border: 1px solid transparent;
+    overflow: visible;
+}
+*/
+.gunlist tr:hover {
+    background: #3A3B3C !important;
+}
+
+.addlistbtn{
+    display: block;
+    width: 50px;
+    background: rgba(253, 0, 255, 0.6);
+    border: none;
+    color: white;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;    
+    height: 25px;
+    margin: auto;
+}
+
+.tableimg {
+    height: 150px;
+    display: block;
+    margin: auto;
+    width: auto;
 }
 
 .gunlist a{
@@ -196,10 +234,17 @@ html {
 .weaponslistleft{
     width: 15%;
     display: inline-block;
+    color: white;
+    vertical-align: top;
+    font-family: "antic", sans-serif;
 }
 
 .weaponslistright{
     width:80%;
     vertical-align: top;
     display: inline-block;
+}
+
+.filter-list{
+    list-style: none;
 }

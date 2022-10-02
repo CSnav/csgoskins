@@ -180,8 +180,24 @@ html {
 }
 
 .gunlist{
+    margin-top: 30px;
     color: white;
     font-family: "antic", sans-serif;
+    font-size: 0.9em;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    border: 1px solid transparent;
+    line-height: 40px;
+}
+
+.gunlist td{
+    border: 1px solid transparent;
+}
+
+.tableimg {
+    height: 150px;
+    width: auto;
+    margin-left: 33%; 
 }
 
 .gunlist a{
@@ -196,10 +212,16 @@ html {
 .weaponslistleft{
     width: 15%;
     display: inline-block;
+    color: white;
+    font-family: "antic", sans-serif;
 }
 
 .weaponslistright{
     width:80%;
     vertical-align: top;
     display: inline-block;
+}
+
+.filter-list{
+    list-style: none;
 }
