@@ -5,6 +5,8 @@ from .forms import ListForm, GunExteriorFilterForm
 from django.core import serializers
 from django.core.paginator import Paginator
 from .options import EX_CHOICES, KN_CHOICES, WT_CHOICES, GT_CHOICES
+from django.db.models import Q
+
 
 def home(request):
     return render(request, "skin_details/home.html")
@@ -28,48 +30,98 @@ def CreateList(request):
 
 
 def gloveList(request):
-    gloves = GloveSkin.objects.all()
-    context = {'gloves': gloves}
-    return render(request, "skin_details/lists/gloveList.html", context)
+    params = {
+              'exterior': request.GET.getlist('exterior') or None,
+             }
+    andlist = []
+    for param in params:
+        if params[param]:
+            andlist.append(Q())
+            for field in params[param]:
+                if(param == "exterior"):
+                    andlist[-1] |= Q(exterior=field)
+    if(andlist):
+        gloves = GloveSkin.objects.filter(*andlist)
+    else:
+        gloves = GloveSkin.objects.all()
+    paginator = Paginator(gloves, 25)  # Show 25 contacts per page.
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    filter_options = {'exterior': EX_CHOICES }
+    return render(
+         request, 'skin_details/lists/gloveList.html',
+         {'page_obj': page_obj, 'filters': filter_options})
 
 
 def knifeList(request):
-    knives = KnifeSkin.objects.all()
-    context = {'knives': knives}
-    return render(request, "skin_details/lists/knifeList.html", context)
-
+    params = {'knife_type': request.GET.getlist('knife_type') or None,
+              'exterior': request.GET.getlist('exterior') or None,
+              'stattrak': request.GET.getlist('stattrak') or None,
+             }
+    andlist = []
+    for param in params:
+        if params[param]:
+            andlist.append(Q())
+            for field in params[param]:
+                if(param == "knife_type"):
+                    andlist[-1] |= Q(knife_type=field)
+                elif(param == "exterior"):
+                    andlist[-1] |= Q(exterior=field)
+                elif(param == "stattrak"):
+                    andlist[-1] |= Q(stattrak=field)
+    print(andlist) 
+    if(andlist):
+        knives = KnifeSkin.objects.filter(*andlist)
+    else:
+        knives = KnifeSkin.objects.all()
+    paginator = Paginator(knives, 25)  # Show 25 contacts per page.
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    filter_options = {'exterior': EX_CHOICES,
+                      'knife_type': KN_CHOICES,
+                      'stattrak': [True, False]}
+    return render(
+         request, 'skin_details/lists/knifeList.html',
+         {'page_obj': page_obj, 'filters': filter_options})
 
 def gunList(request):
-    params = {'gun_type': request.GET.get('gun_type') or None,
+    params = {'gun_type': request.GET.getlist('gun_type') or None,
               'exterior': request.GET.getlist('exterior') or None,
-              'souvenir': request.GET.get('souvenir') or None,
-              'weapon_type': request.GET.get('weapon_type') or None,
-              'stattrak': request.GET.get('stattrak') or None,
-              'rarity': request.GET.get('rarity') or None}
-
-    filtered_params = {}
-    filter_options = {'exterior': EX_CHOICES,
-                      'gun_type': GT_CHOICES,
-                      'weapon_type': WT_CHOICES,
-                      'souvenir': [True, False],
-                      'stattrak': [True, False]}
-    print(params['exterior'])
-    for key in params:
-        if(params[key]):
-            filtered_params[key] = params[key]
-    print('fp', filtered_params)
-    if(filtered_params):
-        guns = GunSkin.objects.filter(**filtered_params)
+              'souvenir': request.GET.getlist('souvenir') or None,
+              'weapon_type': request.GET.getlist('weapon_type') or None,
+              'stattrak': request.GET.getlist('stattrak') or None,
+             }
+    andlist = []
+    for param in params:
+        if params[param]:
+            andlist.append(Q())
+            for field in params[param]:
+                if(param == "gun_type"):
+                    andlist[-1] |= Q(gun_type=field)
+                elif(param == "exterior"):
+                    andlist[-1] |= Q(exterior=field)
+                elif(param == "souvenir"):
+                    andlist[-1] |= Q(souvenir=field)
+                elif(param == "stattrak"):
+                    andlist[-1] |= Q(stattrak=field)
+                elif(param == "weapon_type"):
+                    andlist[-1] |= Q(weapon_type=field)
+    print(andlist) 
+    if(andlist):
+        guns = GunSkin.objects.filter(*andlist)
     else:
         guns = GunSkin.objects.all()
     paginator = Paginator(guns, 25)  # Show 25 contacts per page.
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    form = GunExteriorFilterForm()
+    filter_options = {'exterior': EX_CHOICES,
+                      'gun_type': GT_CHOICES,
+                      'weapon_type': WT_CHOICES,
+                      'souvenir': [True, False],
+                      'stattrak': [True, False]}
     return render(
          request, 'skin_details/lists/gunList.html',
-         {'form': form, 'page_obj': page_obj, 'filters': filter_options})
-    return render(request, 'skin_details/lists/gunList.html', {'page_obj': page_obj, 'filters': filters})
+         {'page_obj': page_obj, 'filters': filter_options})
 
 
 def gunDetails(request, skinid):

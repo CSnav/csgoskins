@@ -1,23 +1,83 @@
 {% extends 'main.html' %}
-
+{% load gun_extras %}
 {% block content %}
-<h1> Knife List </h1>
 
-<div>
-    <div>
-        {% for knife in knives %}
-        <div>
-            <a href="{% url 'knife-details' knife.name %}">
-                <h5>{{knife.name}}</h5>
-            </a>
-        </div>
-        {% endfor %}
+
+<div class="weaponslist" onload="updateUI();">
+        <div class="weaponlistheader">Knives</div>
+    <div class="weaponslistleft" onload="updateUI();">
+
+        <ul class="filter-list" id="m_set">
+    <h3 style="font-size: 30px; text-align: center;"> Filters</h3>
+    <h5 style="font-size: 18px; margin-bottom: 3px;"> Exterior </h5>
+            {% for key in filters.exterior %}
+            <li class="filter-row-single  "><input type="checkbox" onclick="redirect(this); updateUI();" class="checkbox filteritem" id="box_exterior_{{ key }}"
+                value="exterior={{ key }}"  data-value-id="box_exterior_{{ key }}_val"><label for="box_exterior_{{ key }}">{{ key }}</label></li>
+            {% endfor %}
+        </ul>
+
+        <ul class="filter-list" id="m_set">
+    <h5 style="font-size: 18px; margin-bottom: 3px;"> Knife </h5>
+            {% for key in filters.knife_type %}
+            <li class="filter-row-single  "><input type="checkbox" onclick="redirect(this)" class="checkbox filteritem" id="box_knife_type_{{ key }}"
+             value="knife_type={{ key }}" data-value-id="box_knife_type{{ key }}_val"><label for="box_knife_type_{{ key }}">{{ key }}</label></li>
+            {% endfor %}
+        </ul>
+        
+        <ul class="filter-list" id="m_set">
+    <h5 style="font-size: 18px; margin-bottom: 3px;"> Stattrak </h5>
+            {% for key in filters.stattrak %}
+            <li class="filter-row-single  "><input type="checkbox" onclick="redirect(this)" class="checkbox filteritem" id="box_stattrak_{{ key }}"
+            value="stattrak={{ key }}" data-value-id="box_stattrak_{{ key }}_val"><label for="box_stattrak_{{ key }}">{{ key }}</label></li>
+            {% endfor %}
+        </ul>
 
     </div>
+    <div class="weaponslistright">
+
+        <div class="guns">
+            <table class="gunlist" summary="gunlist">
+                <tr>
+                    <th style="width: 10%;">Picture</th>
+                    <th style="width: 17%;">Knife Name</th>
+                    <th style="width: 7%;">Knife Type</th>
+                    <th style="width: 10%;">Exterior</th>
+                    <th style="width: 7%;">Price</th>
+                    <th style="width: 7%;">Add to List</th>
+                </tr>
+                    {% for knife in page_obj %}
+                <tr style="background:{% cycle "#242526" "#18191A" %};">
+                   <td> <img class="tableimg" src="https://steamcommunity-a.akamaihd.net/economy/image/{{ knife.icon_url }}"></td>
+                    <td class="tabletext"> <a href="{% url 'knife-details' knife.name %}">{{ knife.name }}</a></td>
+                    <td class="tabletext">{{ knife.knife_type}}</td>
+                    <td class="tabletext">{{ knife.exterior }}</td>
+                    <td class="tabletext">0.00</td></div>
+                    <td><button class="addlistbtn">Add</button></td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+
+        <div class="pagination">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                <a href="?{% param_replace page=1 %}">&laquo; first</a>
+                <a href="?{% param_replace page=page_obj.previous_page_number %}">previous</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+
+                {% if page_obj.has_next %}
+                <a href="?{% param_replace page=page_obj.next_page_number %}">next</a>
+                <a href="?{% param_replace page=page_obj.paginator.num_pages %}">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+    </div>
 </div>
-
-
-
-
-
+</div>
+</div>
 {% endblock content %}

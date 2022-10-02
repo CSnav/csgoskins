@@ -35,14 +35,14 @@ function redirect(changed_filter) {
 }
 
 
-function updateUI() {
+window.onload = function updateUI() {
     let newstring = urlSearchParams.toString();
     newstring = newstring.replace(/\+/g, '%20'); 
     newstring = decodeURIComponent(newstring);      
     let param_list = newstring.split("&");
     for(let i = 0; i < param_list.length; i++) {
-        let param_name = param_list[i].split("=")[1];
-        let elem = document.getElementById("box_" + param_name);
+        let fieldparam = param_list[i].split("=");
+        let elem = document.getElementById("box_" + fieldparam[0] + "_" + fieldparam[1]);
         elem.checked = true;
     }
     console.log("done updating")

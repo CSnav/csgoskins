@@ -68,6 +68,12 @@ def processGun(raw_payload, pk):
     # 	name = name.replace(r'\u58f1 ', '')
     # if(r'\u5f10 ' in name):
     # 	name = name.replace(r'\u5f10 ', '')
+    if(formatted_payload['fields']['weapon_type'] == 'Sniper Rifle'):
+        formatted_payload['fields']['weapon_type'] = 'Rifle';
+    elif(formatted_payload['fields']['weapon_type'] == 'Shotgun'):
+        formatted_payload['fields']['weapon_type'] = 'Heavy';
+    if(formatted_payload['fields']['weapon_type'] == 'Machinegun'):
+        formatted_payload['fields']['weapon_type'] = 'Heavy';
     return formatted_payload
 
 def processKnife(raw_payload, pk):
