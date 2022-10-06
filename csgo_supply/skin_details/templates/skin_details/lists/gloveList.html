@@ -9,11 +9,22 @@
     <div class="weaponslistleft" onload="updateUI();">
 
         <ul class="filter-list" id="m_set">
-    <h3 style="font-size: 30px; text-align: center;"> Filters</h3>
-    <h5 style="font-size: 18px; margin-bottom: 3px;"> Exterior </h5>
+    <div class="filterheader">
+        <span style="font-size: 30px;  width: 50%; margin: 0; float:left;"> Filters</span>
+        <span style="font-size: 20px; vertical-align: bottom; text-align:center; width: 50%; margin-top: 9px; float:right;"><a href="{% url 'glove-list' %}" style="color: white;"> Clear All</a></span>
+    </div>
+    <hr style="width:85%; margin-left:0px;">
+    <h5 style="font-size: 18px; margin-bottom: 3px;">Exterior</h5>
+            {% for key in filters.glove_type %}
+            <li class="filter-row-single  "><input type="checkbox" onclick="redirect(this); updateUI();" class="checkbox filteritem" id="box_glove_type_{{ key }}"
+                value="glove_type={{ key }}"  data-value-id="box_glove_type_{{ key }}_val"><label for="box_glove_type_{{ key }}">{{ key }}</label></li>
+            {% endfor %}
+        </ul>
+        <ul class="filter-list" id="m_set">
+    <h5 style="font-size: 18px; margin-bottom: 3px;">Exterior</h5>
             {% for key in filters.exterior %}
-            <li class="filter-row-single  "><input type="checkbox" onclick="redirect(this); updateUI();" class="checkbox filteritem" id="box_exterior_{{ key }}"
-                value="exterior={{ key }}"  data-value-id="box_exterior_{{ key }}_val"><label for="box_exterior_{{ key }}">{{ key }}</label></li>
+            <li class="filter-row-single  "><input type="checkbox" onclick="redirect(this) "class="checkbox filteritem" id="box_exterior_{{ key }}"
+             value="exterior={{ key }}" data-value-id="box_exterior_{{ key }}_val"><label for="box_exterior_{{ key }}">{{ key }}</label></li>
             {% endfor %}
         </ul>
     </div>
@@ -24,6 +35,7 @@
                 <tr>
                     <th style="width: 10%;">Picture</th>
                     <th style="width: 17%;">Glove Name</th>
+                    <th style="width: 17%;">Glove Type</th>
                     <th style="width: 10%;">Exterior</th>
                     <th style="width: 7%;">Price</th>
                     <th style="width: 7%;">Add to List</th>
@@ -32,9 +44,10 @@
                 <tr style="background:{% cycle "#242526" "#18191A" %};">
                    <td> <img class="tableimg" src="https://steamcommunity-a.akamaihd.net/economy/image/{{ glove.icon_url }}"></td>
                     <td class="tabletext"> <a href="{% url 'glove-details' glove.name %}">{{ glove.name }}</a></td>
+                    <td class="tabletext">{{ glove.glove_type }}</td>
                     <td class="tabletext">{{ glove.exterior }}</td>
                     <td class="tabletext">0.00</td></div>
-                    <td><button class="addlistbtn">Add</button></td>
+                    <td><a style="text-decoration:none;" href="{% url 'list-form' %}"><button type="{{ glove.generic }}" name="{{ glove.name }}" class="addlistbtn" onclick="addToTempList(this)">Add</button></a></td>
                 </tr>
                 {% endfor %}
             </table>

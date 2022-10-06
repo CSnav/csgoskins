@@ -46,7 +46,8 @@ MODEL_WT_CHOICES = [("Pistol", "Pistol"),
                     ("Heavy", "Heavy"),
                     ("Rifle", "Rifle"),
                     ("SMG", "SMG"),
-                    ("Knife", "Knife")]
+                    ("Knife", "Knife"),
+                    ("Gloves", "Gloves")]
 
 MODEL_KN_CHOICES = [("Bayonet", "Bayonet"),
                     ("Bowie Knife", "Bowie Knife"),
@@ -67,6 +68,16 @@ MODEL_KN_CHOICES = [("Bayonet", "Bayonet"),
                     ("Survival Knife", "Survival Knife"),
                     ("Talon Knife", "Talon Knife"),
                     ("Ursus Knife", "Ursus Knife")]
+
+MODEL_GL_CHOICES = [('Bloodhound Gloves', 'Bloodhound Gloves'),
+                    ('Broken Fang Gloves', 'Broken Fang Gloves'),
+                    ('Driver Gloves', 'Driver Gloves'),
+                    ('Hand Wraps', 'Hand Wraps'),
+                    ('Hydra Gloves', 'Hydra Gloves'),
+                    ('Moto Gloves', 'Hydra Gloves'),
+                    ('Specialist Gloves', 'Specialist Gloves'),
+                    ('Sport Gloves', 'Specialist Gloves')]
+      
 
 EX_CHOICES = ['Factory New',
               'Minimal Wear',
@@ -113,7 +124,8 @@ WT_CHOICES = ['Pistol',
               'Heavy',
               'Rifle',
               'SMG',
-              'Knife']
+              'Knife',
+              'Gloves']
 
 KN_CHOICES = ['Bayonet',
               'Bowie Knife',
@@ -134,3 +146,12 @@ KN_CHOICES = ['Bayonet',
               'Survival Knife',
               'Talon Knife',
               'Ursus Knife']
+
+GL_CHOICES = ['Bloodhound Gloves', 
+              'Broken Fang Gloves',
+              'Driver Gloves', 
+              'Hand Wraps', 
+              'Hydra Gloves', 
+              'Moto Gloves', 
+              'Specialist Gloves', 
+              'Sport Gloves']

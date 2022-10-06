@@ -4,9 +4,9 @@ from .models import GunSkin, KnifeSkin, GloveSkin, SavedList
 from .forms import ListForm, GunExteriorFilterForm
 from django.core import serializers
 from django.core.paginator import Paginator
-from .options import EX_CHOICES, KN_CHOICES, WT_CHOICES, GT_CHOICES
+from .options import EX_CHOICES, KN_CHOICES, WT_CHOICES, GT_CHOICES, GL_CHOICES
 from django.db.models import Q
-
+import json
 
 def home(request):
     return render(request, "skin_details/home.html")
@@ -19,25 +19,49 @@ def List(request, pk):
 
 
 def CreateList(request):
+    guns = []
+    gloves = []
+    knives = []
+    categories = {
+                    'Rifle': [],
+                    'SMG': [],
+                    'Heavy': [],
+                    'Pistol': [],
+                    'Knife': [],
+                    'Gloves': []
+                }
+    for key in categories:
+        temp = json.loads(request.COOKIES.get(key, "[]"))
+        for name in temp:
+            if(key == "Gloves"):
+                categories[key].append(GloveSkin.objects.get(name=name))
+            elif(key == "Knife"):
+                categories[key].append(KnifeSkin.objects.get(name=name))
+            else:
+                categories[key].append(GunSkin.objects.get(name=name))
     form = ListForm()
     if request.method == 'POST':
         form = ListForm(request.POST)
         if form.is_valid():
             form = form.save()
             return redirect('list', pk=form.pk)
-    context = {'form': form}
+    print(categories)
+    context = {'categories': categories}
     return render(request, 'skin_details/list_form.html', context)
 
 
 def gloveList(request):
     params = {
               'exterior': request.GET.getlist('exterior') or None,
+              'glove_type': request.GET.getlist('glove_type') or None,
              }
     andlist = []
     for param in params:
         if params[param]:
             andlist.append(Q())
             for field in params[param]:
+                if(param == "glove_type"):
+                    andlist[-1] |= Q(glove_type=field)
                 if(param == "exterior"):
                     andlist[-1] |= Q(exterior=field)
     if(andlist):
@@ -47,7 +71,8 @@ def gloveList(request):
     paginator = Paginator(gloves, 25)  # Show 25 contacts per page.
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    filter_options = {'exterior': EX_CHOICES }
+    filter_options = {'exterior': EX_CHOICES,
+                      'glove_type': GL_CHOICES, }
     return render(
          request, 'skin_details/lists/gloveList.html',
          {'page_obj': page_obj, 'filters': filter_options})
@@ -92,6 +117,7 @@ def gunList(request):
               'stattrak': request.GET.getlist('stattrak') or None,
              }
     andlist = []
+    print("cookie: ", json.loads(request.COOKIES.get('Rifle', "[]")))
     for param in params:
         if params[param]:
             andlist.append(Q())

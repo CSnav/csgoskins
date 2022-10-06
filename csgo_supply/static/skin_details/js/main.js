@@ -43,7 +43,63 @@ window.onload = function updateUI() {
     for(let i = 0; i < param_list.length; i++) {
         let fieldparam = param_list[i].split("=");
         let elem = document.getElementById("box_" + fieldparam[0] + "_" + fieldparam[1]);
-        elem.checked = true;
+        if(elem != null)
+            elem.checked = true;
     }
-    console.log("done updating")
+};
+
+
+function createCookie(name, value, days) {
+    var expires;
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toGMTString();
+    }
+    else {
+        expires = "";
+    }
+    document.cookie = name + "=" + JSON.stringify(value) + expires + "; path=/";
 }
+
+function getCookie(c_name) {
+    if (document.cookie.length > 0) {
+        c_start = document.cookie.indexOf(c_name + "=");
+        if (c_start != -1) {
+            c_start = c_start + c_name.length + 1;
+            c_end = document.cookie.indexOf(";", c_start);
+            if (c_end == -1) {
+                c_end = document.cookie.length;
+            }
+            return unescape(document.cookie.substring(c_start, c_end));
+        }
+    }
+    return "";
+}
+
+
+function addToTempList(elem) {
+    type = elem.getAttribute("type");
+    name = elem.getAttribute("name");
+    console.log(elem);
+    console.log(type);
+    console.log(name);
+
+    let tempList = [];
+    if(getCookie("" + type) != "") {
+        tempList = JSON.parse(getCookie("" + type));
+    }
+    tempList.push(name);
+    createCookie(type, tempList, 60);
+}
+
+function remFromTempList(elem) {
+    type = elem.getAttribute("type");
+    name = elem.getAttribute("name");
+    tempList = JSON.parse(getCookie(type));
+    index = tempList.indexOf(name);
+    if(index != -1) {
+        tempList.splice(index, 1);
+    }
+    createCookie(type, tempList, 60);
+} 

@@ -46,6 +46,13 @@
     z-index: 1001;
 }
 
+.categoryheader {
+    font-family: "Antic", sans-serif;
+    font-size: 30px; 
+    color: white;
+    text-align: center;
+}
+
 body {
     display: inline-block;
     padding: 0;
@@ -219,7 +226,6 @@ tbody {
 
 .addlistbtn{
     display: block;
-    width: 50px;
     background: rgba(253, 0, 255, 0.6);
     border: none;
     color: white;
@@ -228,6 +234,8 @@ tbody {
     cursor: pointer;    
     height: 25px;
     margin: auto;
+    min-width: 75px;
+    min-height: 35px;
 }
 
 .tableimg {
@@ -237,6 +245,11 @@ tbody {
     width: auto;
 }
 
+.filterheader {
+    margin-top: 30px; 
+    width: 100%;
+    padding-bottom: 30px;
+}
 .gunlist a{
     color: white;
 }
@@ -249,7 +262,6 @@ tbody {
 
 .weaponslistleft{
     width: 15%;
-    margin-top: 1%;
     display: inline-block;
     color: white;
     vertical-align: top;

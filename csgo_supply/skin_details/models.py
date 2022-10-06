@@ -32,7 +32,7 @@ class GunSkin(models.Model):
     stattrak = models.BooleanField(default=False)
     rarity = models.CharField(max_length=20)
     rarity_color = models.CharField(max_length=10)
-
+    generic = models.CharField(max_length=30, default="", choices=MODEL_WT_CHOICES)   
     class Meta:
         ordering = ['name']
 
@@ -46,6 +46,8 @@ class GloveSkin(models.Model):
     icon_url_large = models.CharField(max_length=300)
     rarity = models.CharField(max_length=20)
     rarity_color = models.CharField(max_length=10)
+    glove_type = models.CharField(max_length=40)
+    generic = models.CharField(max_length=30, default="", choices=MODEL_WT_CHOICES)   
     exterior = models.CharField(max_length=30, choices=MODEL_EX_CHOICES)
     class Meta:
         ordering = ['name']
@@ -59,6 +61,7 @@ class KnifeSkin(models.Model):
     icon_url_large = models.CharField(max_length=300)
     weapon_type = models.CharField(max_length=10, choices=MODEL_WT_CHOICES)
     knife_type = models.CharField(max_length=20, choices=MODEL_KN_CHOICES)
+    generic = models.CharField(max_length=30, default="", choices=MODEL_WT_CHOICES)   
     exterior = models.CharField(max_length=30, choices=MODEL_EX_CHOICES)
     rarity = models.CharField(max_length=20)
     rarity_color = models.CharField(max_length=10)

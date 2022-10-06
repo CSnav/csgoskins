@@ -2,12 +2,50 @@
 
 {% block content %}
 
-<div>
-    <form method="POST" action="">
-        {% csrf_token %}
-        {{form.as_p}}
-        <input type="submit" value="Submit" />
-    </form>
+<div style="width: 90%; margin-left:5%; margin-bottom: 75px;" class="weaponslist">
+    <div>
+    <div class="weaponlistheader"> Loadout Builder </div>
+    <button class="addlistbtn"> Save Loadout </button>
+    </div>
+    <hr>
+    {% for category, skins in categories.items %}
+        <div name="{{ category }}" class="guns">
+            <h3 class="categoryheader">{{ category }}</h3>
+             <table class="gunlist" summary="gunlist">
+                <tr style="background: #1B1C1C;">
+                    <th style="width: 10%;">Picture</th>
+                    <th style="width: 17%;">Name</th>
+                    <th style="width: 7%;">Type</th>
+                    <th style="width: 10%;">Exterior</th>
+                    <th style="width: 7%;">Price</th>
+                    <th style="width: 7%;">Remove from List</th>
+                </tr>
+                    {% for skin in skins %}
+                        {% cycle "#242526" "#18191A" as bgcolor silent %}
+                        <tr style="background:{{ bgcolor }}">
+                        <td> <img class="tableimg" src="https://steamcommunity-a.akamaihd.net/economy/image/{{ skin.icon_url }}"></td>
+                        {% if skin.generic == "Gloves" %}
+                            <td class="tabletext"> <a href="{% url 'glove-details' skin.name %}">{{ skin.name }}</a></td>
+                        {% elif skin.generic == "Knife" %}
+                        <td class="tabletext"> <a href="{% url 'knife-details' skin.name %}">{{ skin.name }}</a></td>
+                        {% else %}
+                        <td class="tabletext"> <a href="{% url 'gun-details' skin.name %}">{{ skin.name }}</a></td>
+                        {% endif %}
+                        <td class="tabletext"> {{ skin.generic }} </td> 
+                        <td class="tabletext">{{ skin.exterior }}</td>
+                        <td class="tabletext">0.00</td></div>
+                        <td><a style="text-decoration: none;" href="{% url 'list-form' %}"><button type="{{ skin.generic }}" name="{{ skin.name }}" class="addlistbtn" onclick="remFromTempList(this)">Remove</button></a></td>
+                </tr>
+                {% endfor %}
+                    {% if category == "Gloves" %}
+                   <tr style="background: {{ bgcolor }}"><td style="padding: 10px 0px 10px 0px;"> <a style="text-decoration:none;" href="{% url 'glove-list' %}"><button class="addlistbtn" > Choose {{ category }} </button></a></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    {% elif category == "Knife" %}
+                   <tr><td style="padding: 10px 0px 10px 0px;"> <a style="text-decoration:none;" href="{% url 'knife-list' %}"><button class="addlistbtn" > Choose a {{ category }} </button></a></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    {% else %}
+                   <tr><td style="padding: 10px 0px 10px 0px;"> <a style="text-decoration:none;" href="{% url 'gun-list' %}?weapon_type={{ category }}"><button class="addlistbtn" > Choose a {{ category }} </button></a></td><td></td><td></td><td></td><td></td><td></td></tr>
+                {% endif %}
+            </table>
+        </div>
+{% endfor %}
 </div>
-
 {% endblock content %}

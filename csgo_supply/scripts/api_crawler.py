@@ -69,11 +69,12 @@ def processGun(raw_payload, pk):
     # if(r'\u5f10 ' in name):
     # 	name = name.replace(r'\u5f10 ', '')
     if(formatted_payload['fields']['weapon_type'] == 'Sniper Rifle'):
-        formatted_payload['fields']['weapon_type'] = 'Rifle';
+        formatted_payload['fields']['weapon_type'] = 'Rifle'
     elif(formatted_payload['fields']['weapon_type'] == 'Shotgun'):
-        formatted_payload['fields']['weapon_type'] = 'Heavy';
+        formatted_payload['fields']['weapon_type'] = 'Heavy'
     if(formatted_payload['fields']['weapon_type'] == 'Machinegun'):
-        formatted_payload['fields']['weapon_type'] = 'Heavy';
+        formatted_payload['fields']['weapon_type'] = 'Heavy'
+    formatted_payload['fields']['generic'] = formatted_payload['fields']['weapon_type']
     return formatted_payload
 
 def processKnife(raw_payload, pk):
@@ -86,6 +87,7 @@ def processKnife(raw_payload, pk):
     if(formatted_payload['fields']['icon_url_large'] == None):
         formatted_payload['fields']['icon_url_large'] = ""
     formatted_payload['fields']['weapon_type'] = raw_payload.get("weapon_type", "")
+    formatted_payload['fields']['generic'] = raw_payload.get("weapon_type", "")
     formatted_payload['fields']['knife_type']  = raw_payload.get("knife_type", "")
     formatted_payload['fields']['exterior'] = raw_payload.get("exterior", "")
     formatted_payload['fields']['rarity'] = raw_payload.get("rarity", "")
@@ -103,7 +105,6 @@ def processKnife(raw_payload, pk):
         formatted_payload['fields']['exterior'] = "Minimal Wear"
     elif("Factory New" in name):
         formatted_payload['fields']['exterior'] = "Factory New"
-    #    print(formatted_payload) 
     return formatted_payload
 
 def processGloves(raw_payload, pk):
@@ -115,6 +116,7 @@ def processGloves(raw_payload, pk):
     formatted_payload['fields']['icon_url_large'] = raw_payload.get("icon_url_large", "")
     formatted_payload['fields']['exterior'] = raw_payload.get("exterior", "")
     formatted_payload['fields']['rarity'] = raw_payload.get("rarity", "")
+    formatted_payload['fields']['generic'] = "Gloves" 
     formatted_payload['fields']['rarity_color'] = raw_payload.get("rarity_color", "")	
     name = raw_payload.get("name", "")
     formatted_payload['fields']['name'] = name 
@@ -128,6 +130,10 @@ def processGloves(raw_payload, pk):
         formatted_payload['fields']['exterior'] = "Minimal Wear"
     elif("Factory New" in name):
         formatted_payload['fields']['exterior'] = "Factory New"
+    split_name = name.split("|")
+    if("\u2605 " in split_name[0]):
+        split_name[0] = split_name[0].replace("\u2605 ", "")[:-1]
+    formatted_payload['fields']['glove_type'] = split_name[0] 
     return formatted_payload
 
 def main():
