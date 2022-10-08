@@ -77,6 +77,26 @@ class SavedList(models.Model):
     knives = models.ManyToManyField(KnifeSkin, blank=True)
     gloves = models.ManyToManyField(GloveSkin, blank=True)
 
+    @classmethod
+    def init_list(cls):
+        return cls()
+
+    @classmethod
+    def create_from_cookie(cls, cookies):
+        skinlist = cls()
+        skinlist.save()
+        for category in cookies:
+            for skin in cookies[category]:
+                if (category == "Knife"):
+                    print(f'\n\n\n\n\n {skin} \n\n\n\n\n')
+                    skinlist.knives.add(KnifeSkin.objects.get(name=skin))
+                elif (category == "Gloves"):
+                    skinlist.gloves.add(GloveSkin.objects.get(name=skin))
+                elif (category != 'csrf_token'):
+                    skinlist.guns.add(GunSkin.objects.get(name=skin))
+        return skinlist
+
+
     def __str__(self):
         return str(self.pk)
 

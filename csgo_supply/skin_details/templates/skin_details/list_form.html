@@ -5,7 +5,10 @@
 <div style="width: 90%; margin-left:5%; margin-bottom: 75px;" class="weaponslist">
     <div>
     <div class="weaponlistheader"> Loadout Builder </div>
-    <button class="addlistbtn"> Save Loadout </button>
+    <form action="" method="post">
+    <button name="savelist" class="addlistbtn"> Save Loadout </button>
+ {% csrf_token %}
+    </form>
     </div>
     <hr>
     {% for category, skins in categories.items %}

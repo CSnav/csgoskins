@@ -37,14 +37,26 @@ def CreateList(request):
                 categories[key].append(GloveSkin.objects.get(name=name))
             elif(key == "Knife"):
                 categories[key].append(KnifeSkin.objects.get(name=name))
-            else:
+            elif(key != "csrf_token"):
                 categories[key].append(GunSkin.objects.get(name=name))
     form = ListForm()
     if request.method == 'POST':
-        form = ListForm(request.POST)
-        if form.is_valid():
-            form = form.save()
-            return redirect('list', pk=form.pk)
+        skinlist = SavedList.init_list() 
+        skinlist.save()
+        for key in categories:
+            for skin in categories[key]:
+                if(key == "Knife"):
+                    skinlist.knives.add(skin)
+                elif(key == "Gloves"):
+                    skinlist.gloves.add(skin)
+                else:
+                    skinlist.guns.add(skin)
+        skinlist.save()
+        print("skinlist:         ", skinlist)
+        direct = redirect('list', pk=skinlist.pk)
+        for i in categories:
+            direct.delete_cookie(i)
+        return direct 
     print(categories)
     context = {'categories': categories}
     return render(request, 'skin_details/list_form.html', context)
@@ -94,7 +106,6 @@ def knifeList(request):
                     andlist[-1] |= Q(exterior=field)
                 elif(param == "stattrak"):
                     andlist[-1] |= Q(stattrak=field)
-    print(andlist) 
     if(andlist):
         knives = KnifeSkin.objects.filter(*andlist)
     else:

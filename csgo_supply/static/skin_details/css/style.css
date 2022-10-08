@@ -234,6 +234,8 @@ tbody {
     cursor: pointer;    
     height: 25px;
     margin: auto;
+    min-width: 75px;
+    min-height: 35px;
 }
 
 .tableimg {
@@ -243,6 +245,11 @@ tbody {
     width: auto;
 }
 
+.filterheader {
+    margin-top: 30px; 
+    width: 100%;
+    padding-bottom: 30px;
+}
 .gunlist a{
     color: white;
 }
@@ -255,7 +262,6 @@ tbody {
 
 .weaponslistleft{
     width: 15%;
-    margin-top: 1%;
     display: inline-block;
     color: white;
     vertical-align: top;
