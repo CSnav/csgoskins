@@ -1,31 +1,40 @@
 {% extends 'main.html' %}
 
 {% block content %}
-<h1> csgo.supply home </h1>
 
-<div>
-    <h2>Gloves: </h2>
-    {% for glove in skinlist.gloves.all %}
-    <a href="{%url 'glove-details' glove.name %}">
-        <h3>{{glove.name}}</h3>
-    </a>
-    {% endfor %}
-    <h2>Knives: </h2>
-    {% for knife in skinlist.knives.all %}
-    <a href="{%url 'knife-details' knife.name %}">
-        <h3>{{knife.name}}</h3>
-    </a>
-    {% endfor %}
-    <h2>Guns: </h2>
-    {% for gun in skinlist.guns.all %}
-    <a href="{%url 'gun-details' gun.name %}">
-        <h3>{{gun.name}}</h3>
-    </a>
-    {% endfor %}
+<div style="width: 90%; margin-left:5%; margin-bottom: 75px;" class="weaponslist">
+    <div class="weaponlistheader"> Loadout </div>
+    <hr>
+    {% for category, skins in categories.items %}
+        <div name="{{ category }}" class="guns">
+            <h3 class="categoryheader">{{ category }}</h3>
+             <table class="gunlist" summary="gunlist">
+                <tr style="background: #1B1C1C;">
+                    <th style="width: 10%;">Picture</th>
+                    <th style="width: 17%;">Name</th>
+                    <th style="width: 7%;">Type</th>
+                    <th style="width: 10%;">Exterior</th>
+                    <th style="width: 7%;">Price</th>
+                </tr>
+                    {% for skin in skins %}
+                        {% cycle "#242526" "#18191A" as bgcolor silent %}
+                        <tr style="background:{{ bgcolor }}">
+                        <td> <img class="tableimg" src="https://steamcommunity-a.akamaihd.net/economy/image/{{ skin.icon_url }}"></td>
+                        {% if skin.generic == "Gloves" %}
+                            <td class="tabletext"> <a href="{% url 'glove-details' skin.name %}">{{ skin.name }}</a></td>
+                        {% elif skin.generic == "Knife" %}
+                        <td class="tabletext"> <a href="{% url 'knife-details' skin.name %}">{{ skin.name }}</a></td>
+                        {% else %}
+                        <td class="tabletext"> <a href="{% url 'gun-details' skin.name %}">{{ skin.name }}</a></td>
+                        {% endif %}
+                        <td class="tabletext"> {{ skin.generic }} </td> 
+                        <td class="tabletext">{{ skin.exterior }}</td>
+                        <td class="tabletext">0.00</td></div>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+{% endfor %}
 </div>
-
-
-
-
 
 {% endblock content %}

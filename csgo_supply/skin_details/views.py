@@ -14,9 +14,24 @@ def home(request):
 
 def List(request, pk):
     skinlist = SavedList.objects.get(pk=pk)
-    context = {'skinlist': skinlist}
-    return render(request, "skin_details/list.html", context)
-
+    # context = {'skinlist': skinlist}
+    # return render(request, "skin_details/list.html", context)
+    categories = {
+                    'Rifle': [],
+                    'SMG': [],
+                    'Heavy': [],
+                    'Pistol': [],
+                    'Knife': [],
+                    'Gloves': []
+                }
+    for gun in skinlist.guns.all():
+        categories[gun.generic].append(gun)
+    for knife in skinlist.knives.all():
+        categories[knife.generic].append(knife)
+    for gloves in skinlist.gloves.all():
+        categories[gloves.generic].append(gloves)
+    context = {'categories': categories}
+    return render(request, 'skin_details/list.html', context)
 
 def CreateList(request):
     guns = []
