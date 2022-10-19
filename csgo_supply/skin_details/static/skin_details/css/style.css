@@ -1,7 +1,7 @@
 @font-face {
-    font-family: 'Antic';
-    src: local('Antic'),
-        url('/static/skin_details/fonts/Antic-Regular.ttf') format("truetype");
+    font-family: 'Antarctican';
+    src: local('Antarctican'),
+        url('/static/skin_details/fonts/AntarcticanMono-Book.ttf') format("truetype");
 }
 
 /* Add a black background color to the top navigation */
@@ -47,7 +47,7 @@
 }
 
 .categoryheader {
-    font-family: "Antic", sans-serif;
+    font-family: "Antarctican", sans-serif;
     font-size: 30px; 
     color: white;
     text-align: center;
@@ -76,15 +76,31 @@ html {
     margin: 0;
     padding-top: 50px;
     text-align: center;
-    font-family: "Antic", sans-serif;
+    font-family: "Antarctican", sans-serif;
 }
 
+.weapondetailheader {
+    font-family: "Antarctican", sans-serif;
+    color: white;
+    font-size: 40px;
+}
+
+.listsearch input{
+    width: 14%;
+    margin-left: 43%;
+    min-height: 30px;
+    border-radius: 5px;
+    text-align: left;
+    font-size: 16px;
+    padding: 0px 0px 0px 10px;
+    font-family: "Antarctican", sans-serif;
+}
 /* Dropdown Button */
 .dropbtn {
     padding: 14px 16px 16px 16px;
     background: rgba(255, 255, 255, 0);
     color: #f2f2f2;
-    font-family: "Antic", sans-serif;
+    font-family: "Antarctican", sans-serif;
     font-size: 25px;
     text-decoration: none;
     border: none;
@@ -104,7 +120,7 @@ html {
     background-color: #f1f1f1;
     min-width: 95px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    font-family: "Antic", sans-serif;
+    font-family: "Antarctican", sans-serif;
     z-index: 10101;
 }
 
@@ -113,7 +129,7 @@ html {
     color: black;
     width: 95px;
     padding: 12px 16px;
-    font-family: "Antic", sans-serif;
+    font-family: "Antarctican", sans-serif;
     text-decoration: none;
     display: block;
 }
@@ -134,7 +150,7 @@ html {
 }
 
 .big-home-rectangle h1 {
-    font-family: "Antic", sans-serif;
+    font-family: "Antarctican", sans-serif;
     color: white;
     padding-left: 3%;
     padding-top: 40px;
@@ -174,7 +190,7 @@ html {
 
 .weaponlistheader {
     color: white;
-    font-family: "Antic", sans-serif;
+    font-family: "Antarctican", sans-serif;
     font-size: 70px;
     text-align: center;
     font-weight: normal;
@@ -188,12 +204,12 @@ html {
 
 .pagination a{
     color: white;
-    font-family: "antic", sans-serif;
+    font-family: "Antarctican", sans-serif;
 }
 
 .current{
     color: white;
-    font-family: "antic", sans-serif;
+    font-family: "Antarctican", sans-serif;
 }
 
 .gunlist{
@@ -201,7 +217,7 @@ html {
     color: white;
     align: center;
     display: block;
-    font-family: "antic", sans-serif;
+    font-family: "Antarctican", sans-serif;
     font-size: 16px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
     width: 100%;
@@ -265,7 +281,7 @@ tbody {
     display: inline-block;
     color: white;
     vertical-align: top;
-    font-family: "antic", sans-serif;
+    font-family: "Antarctican", sans-serif;
 }
 
 .weaponslistright{

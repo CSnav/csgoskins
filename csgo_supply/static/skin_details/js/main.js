@@ -40,8 +40,13 @@ window.onload = function updateUI() {
     newstring = newstring.replace(/\+/g, '%20'); 
     newstring = decodeURIComponent(newstring);      
     let param_list = newstring.split("&");
+    console.log(param_list);
     for(let i = 0; i < param_list.length; i++) {
         let fieldparam = param_list[i].split("=");
+        if(fieldparam[0] === "search") {
+            let tempelem = document.getElementById("search");
+            tempelem.value = fieldparam[1];
+        }
         let elem = document.getElementById("box_" + fieldparam[0] + "_" + fieldparam[1]);
         if(elem != null)
             elem.checked = true;

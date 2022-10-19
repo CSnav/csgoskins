@@ -81,6 +81,7 @@ def gloveList(request):
     params = {
               'exterior': request.GET.getlist('exterior') or None,
               'glove_type': request.GET.getlist('glove_type') or None,
+              'search': request.GET.getlist('search') or None,
              }
     andlist = []
     for param in params:
@@ -91,6 +92,12 @@ def gloveList(request):
                     andlist[-1] |= Q(glove_type=field)
                 if(param == "exterior"):
                     andlist[-1] |= Q(exterior=field)
+                elif(param == "search"):
+                    for word in field.split(" "):
+                        temp = Q()
+                        temp = temp | Q(name__icontains=word) | Q(exterior__icontains=word)
+                        temp = temp | Q(glove_type__icontains=word)
+                        andlist[-1] &= temp
     if(andlist):
         gloves = GloveSkin.objects.filter(*andlist)
     else:
@@ -109,6 +116,7 @@ def knifeList(request):
     params = {'knife_type': request.GET.getlist('knife_type') or None,
               'exterior': request.GET.getlist('exterior') or None,
               'stattrak': request.GET.getlist('stattrak') or None,
+              'search': request.GET.getlist('search') or None,
              }
     andlist = []
     for param in params:
@@ -121,6 +129,12 @@ def knifeList(request):
                     andlist[-1] |= Q(exterior=field)
                 elif(param == "stattrak"):
                     andlist[-1] |= Q(stattrak=field)
+                elif(param == "search"):
+                    for word in field.split(" "):
+                        temp = Q()
+                        temp = temp | Q(name__icontains=word) | Q(exterior__icontains=word)
+                        temp = temp | Q(knife_type__icontains=word)
+                        andlist[-1] &= temp
     if(andlist):
         knives = KnifeSkin.objects.filter(*andlist)
     else:
@@ -141,6 +155,7 @@ def gunList(request):
               'souvenir': request.GET.getlist('souvenir') or None,
               'weapon_type': request.GET.getlist('weapon_type') or None,
               'stattrak': request.GET.getlist('stattrak') or None,
+              'search': request.GET.getlist('search') or None,
              }
     andlist = []
     print("cookie: ", json.loads(request.COOKIES.get('Rifle', "[]")))
@@ -158,6 +173,12 @@ def gunList(request):
                     andlist[-1] |= Q(stattrak=field)
                 elif(param == "weapon_type"):
                     andlist[-1] |= Q(weapon_type=field)
+                elif(param == "search"):
+                    for word in field.split(" "):
+                        temp = Q()
+                        temp = temp | Q(name__icontains=word) | Q(exterior__icontains=word)
+                        temp = temp | Q(weapon_type__icontains=word) | Q(gun_type__icontains=field)
+                        andlist[-1] &= temp
     print(andlist) 
     if(andlist):
         guns = GunSkin.objects.filter(*andlist)

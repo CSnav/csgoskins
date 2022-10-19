@@ -4,7 +4,14 @@
 
 
 <div class="weaponslist" onload="updateUI();">
+        <div class="listhead">
         <div class="weaponlistheader">Guns</div>
+        <div class="listsearch">
+            <form method="GET"> 
+                <input id="search" type="text" name="search" placeholder="Search" />
+            </form>
+        </div>
+    </div>
     <div class="weaponslistleft" onload="updateUI();">
 
         <ul class="filter-list" id="m_set">
@@ -12,7 +19,7 @@
         <span style="font-size: 30px;  width: 50%; margin: 0; float:left;"> Filters</span>
         <span style="font-size: 20px; vertical-align: bottom; text-align:center; width: 50%; margin-top: 9px; float:right;"><a href="{% url 'gun-list' %}" style="color: white;"> Clear All</a></span>
     </div>
-    <hr style="width:85%; margin-left:0px;">
+    <hr style="width:90%; margin-left:0px;">
     <h5 style="font-size: 18px; margin-bottom: 3px;"> Exterior </h5>
             {% for key in filters.exterior %}
             <li class="filter-row-single  "><input type="checkbox" onclick="redirect(this); updateUI();" class="checkbox filteritem" id="box_exterior_{{ key }}"
