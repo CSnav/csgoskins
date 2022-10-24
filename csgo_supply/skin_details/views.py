@@ -82,6 +82,7 @@ def gloveList(request):
               'exterior': request.GET.getlist('exterior') or None,
               'glove_type': request.GET.getlist('glove_type') or None,
               'search': request.GET.getlist('search') or None,
+              'sort': request.GET.getlist('sort') or None,
              }
     andlist = []
     for param in params:
@@ -102,6 +103,8 @@ def gloveList(request):
         gloves = GloveSkin.objects.filter(*andlist)
     else:
         gloves = GloveSkin.objects.all()
+    if params.get('sort', []):
+        gloves = gloves.order_by(params['sort'][0])
     paginator = Paginator(gloves, 25)  # Show 25 contacts per page.
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
@@ -109,7 +112,7 @@ def gloveList(request):
                       'glove_type': GL_CHOICES, }
     return render(
          request, 'skin_details/lists/gloveList.html',
-         {'page_obj': page_obj, 'filters': filter_options})
+         {'page_obj': page_obj, 'filters': filter_options, 'sort': params.get('sort', [''])[0] if params.get('sort') else ""})
 
 
 def knifeList(request):
@@ -117,6 +120,7 @@ def knifeList(request):
               'exterior': request.GET.getlist('exterior') or None,
               'stattrak': request.GET.getlist('stattrak') or None,
               'search': request.GET.getlist('search') or None,
+              'sort': request.GET.getlist('sort') or None,
              }
     andlist = []
     for param in params:
@@ -139,6 +143,8 @@ def knifeList(request):
         knives = KnifeSkin.objects.filter(*andlist)
     else:
         knives = KnifeSkin.objects.all()
+    if params.get('sort', []):
+        knives = knives.order_by(params['sort'][0])
     paginator = Paginator(knives, 25)  # Show 25 contacts per page.
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
@@ -147,7 +153,7 @@ def knifeList(request):
                       'stattrak': [True, False]}
     return render(
          request, 'skin_details/lists/knifeList.html',
-         {'page_obj': page_obj, 'filters': filter_options})
+         {'page_obj': page_obj, 'filters': filter_options, 'sort': params.get('sort', [''])[0] if params.get('sort') else ""})
 
 def gunList(request):
     params = {'gun_type': request.GET.getlist('gun_type') or None,
@@ -155,6 +161,7 @@ def gunList(request):
               'souvenir': request.GET.getlist('souvenir') or None,
               'weapon_type': request.GET.getlist('weapon_type') or None,
               'stattrak': request.GET.getlist('stattrak') or None,
+              'sort': request.GET.getlist('sort') or None,
               'search': request.GET.getlist('search') or None,
              }
     andlist = []
@@ -184,6 +191,8 @@ def gunList(request):
         guns = GunSkin.objects.filter(*andlist)
     else:
         guns = GunSkin.objects.all()
+    if params.get('sort', []):
+        guns = guns.order_by(params['sort'][0])
     paginator = Paginator(guns, 25)  # Show 25 contacts per page.
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
@@ -194,7 +203,7 @@ def gunList(request):
                       'stattrak': [True, False]}
     return render(
          request, 'skin_details/lists/gunList.html',
-         {'page_obj': page_obj, 'filters': filter_options})
+         {'page_obj': page_obj, 'filters': filter_options,'sort': params.get('sort', [''])[0] if params.get('sort') else ""})
 
 
 def gunDetails(request, skinid):

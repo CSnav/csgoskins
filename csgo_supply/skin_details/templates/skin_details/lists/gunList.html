@@ -16,8 +16,8 @@
 
         <ul class="filter-list" id="m_set">
     <div class="filterheader">
-        <span style="font-size: 30px;  width: 50%; margin: 0; float:left;"> Filters</span>
-        <span style="font-size: 20px; vertical-align: bottom; text-align:center; width: 50%; margin-top: 9px; float:right;"><a href="{% url 'gun-list' %}" style="color: white;"> Clear All</a></span>
+        <span style="font-size: 20px;  width: 50%; margin: 0; float:left;"> Filters</span>
+        <span style="font-size: 15px; vertical-align: bottom; text-align:center; width: 50%; margin-top: 9px; float:right;"><a href="{% url 'gun-list' %}" style="color: white;"> Clear All</a></span>
     </div>
     <hr style="width:90%; margin-left:0px;">
     <h5 style="font-size: 18px; margin-bottom: 3px;"> Exterior </h5>
@@ -66,11 +66,34 @@
             <table class="gunlist" summary="gunlist">
                 <tr>
                     <th style="width: 10%;">Picture</th>
-                    <th style="width: 17%;">Gun Name</th>
-                    <th style="width: 7%;">Weapon Type</th>
-                    <th style="width: 7%;">Gun</th>
-                    <th style="width: 10%;">Exterior</th>
-                    <th style="width: 7%;">Price</th>
+                    {% if sort == 'name' %}
+                        <th style="width: 17%;"><a href=?{% param_replace sort='-name' %}>Gun Name</a></th>
+                    {% else %}
+                        <th style="width: 17%;"><a href=?{% param_replace sort='name' %}>Gun Name</a></th>
+                    {% endif %}
+
+                    {% if sort == 'glove_type' %}
+                        <th style="width: 7%;"><a href=?{% param_replace sort='-weapon_type' %}>Weapon Type</th>
+                    {% else %}
+                        <th style="width: 7%;"><a href=?{% param_replace sort='weapon_type' %}>Weapon Type</th>
+                    {% endif %}
+
+                    {% if sort == 'gun_type' %}
+                        <th style="width: 7%;"><a href=?{% param_replace sort='-gun_type' %}>Weapon Type</th>
+                    {% else %}
+                        <th style="width: 7%;"><a href=?{% param_replace sort='gun_type' %}>Weapon Type</th>
+                    {% endif %}
+
+                    {% if sort == 'exterior' %}
+                        <th style="width: 10%;"><a href=?{% param_replace sort='-exterior' %}>Exterior</th>
+                    {% else %}
+                        <th style="width: 10%;"><a href=?{% param_replace sort='exterior' %}>Exterior</th>
+                    {% endif %}
+                    {% if sort == 'price' %}
+                        <th style="width: 7%;"><a href=?{% param_replace sort='' %}>Price</th>
+                    {% else %}
+                        <th style="width: 7%;"><a href=?{% param_replace sort='' %}>Price</th>
+                    {% endif %}
                     <th style="width: 7%;">Add to List</th>
                 </tr>
                     {% for gun in page_obj %}
