@@ -76,13 +76,14 @@ class SavedList(models.Model):
     guns = models.ManyToManyField(GunSkin, blank=True)
     knives = models.ManyToManyField(KnifeSkin, blank=True)
     gloves = models.ManyToManyField(GloveSkin, blank=True)
+    name = models.CharField(max_length=100)
 
     @classmethod
     def init_list(cls):
         return cls()
 
     @classmethod
-    def create_from_cookie(cls, cookies):
+    def create_from_cookie(cls, cookies, name):
         skinlist = cls()
         skinlist.save()
         for category in cookies:
@@ -94,6 +95,7 @@ class SavedList(models.Model):
                     skinlist.gloves.add(GloveSkin.objects.get(name=skin))
                 elif (category != 'csrf_token'):
                     skinlist.guns.add(GunSkin.objects.get(name=skin))
+        skinlist.name = name
         return skinlist
 
 

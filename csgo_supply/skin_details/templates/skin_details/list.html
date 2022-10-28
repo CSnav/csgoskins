@@ -1,9 +1,10 @@
-{% extends 'main.html' %}
-
+{% include 'head.html' with  title=pagetitle %}
+{% load static %}
+{% include 'navbar.html' %}
 {% block content %}
 
 <div style="width: 90%; margin-left:5%; margin-bottom: 75px;" class="weaponslist">
-    <div class="weaponlistheader"> Loadout </div>
+    <div class="weaponlistheader"> {{ name }}</div>
     <hr>
     {% for category, skins in categories.items %}
         <div name="{{ category }}" class="guns">

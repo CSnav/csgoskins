@@ -30,7 +30,8 @@ def List(request, pk):
         categories[knife.generic].append(knife)
     for gloves in skinlist.gloves.all():
         categories[gloves.generic].append(gloves)
-    context = {'categories': categories}
+    context = {'categories': categories, 'name': skinlist.name, 
+               'pagetitle': f'{skinlist.name} - CSGO.Supply'}
     return render(request, 'skin_details/list.html', context)
 
 def CreateList(request):
@@ -54,24 +55,30 @@ def CreateList(request):
                 categories[key].append(KnifeSkin.objects.get(name=name))
             elif(key != "csrf_token"):
                 categories[key].append(GunSkin.objects.get(name=name))
-    form = ListForm()
     if request.method == 'POST':
-        skinlist = SavedList.init_list() 
-        skinlist.save()
-        for key in categories:
-            for skin in categories[key]:
-                if(key == "Knife"):
-                    skinlist.knives.add(skin)
-                elif(key == "Gloves"):
-                    skinlist.gloves.add(skin)
-                else:
-                    skinlist.guns.add(skin)
-        skinlist.save()
-        print("skinlist:         ", skinlist)
-        direct = redirect('list', pk=skinlist.pk)
-        for i in categories:
-            direct.delete_cookie(i)
-        return direct 
+        print(request.POST)
+        if (bool([a for a in categories.values() if a != []])):
+            skinlist = SavedList.init_list() 
+            skinlist.save()
+            for key in categories:
+                for skin in categories[key]:
+                    if(key == "Knife"):
+                        skinlist.knives.add(skin)
+                    elif(key == "Gloves"):
+                        skinlist.gloves.add(skin)
+                    else:
+                        skinlist.guns.add(skin)
+            name = request.POST.get('savedlistname', '')
+            if not name:
+                skinlist.name = f'My Saved Loadout {skinlist.pk}'
+            else:
+                skinlist.name = name 
+            skinlist.save()
+            print("skinlist:         ", skinlist)
+            direct = redirect('list', pk=skinlist.pk)
+            for i in categories:
+                direct.delete_cookie(i)
+            return direct 
     print(categories)
     context = {'categories': categories}
     return render(request, 'skin_details/list_form.html', context)
@@ -208,19 +215,19 @@ def gunList(request):
 
 def gunDetails(request, skinid):
     gun = GunSkin.objects.get(name=skinid)
-    context = {'gun': gun}
+    context = {'gun': gun, 'pagetitle': f'{gun.name} - CSGO.Supply'}
     return render(request, "skin_details/details/gunDetails.html", context)
 
 
 def knifeDetails(request, skinid):
     knife = KnifeSkin.objects.get(name=skinid)
-    context = {'knife': knife}
+    context = {'knife': knife, 'pagetitle': f'{knife.name} - CSGO.Supply'}
     return render(request, "skin_details/details/knifeDetails.html", context)
 
 
 def gloveDetails(request, skinid):
     glove = GloveSkin.objects.get(name=skinid)
-    context = {'glove': glove}
+    context = {'glove': glove, 'pagetitle': f'{glove.name} - CSGO.Supply'}
     return render(request, "skin_details/details/gloveDetails.html", context)
 
 

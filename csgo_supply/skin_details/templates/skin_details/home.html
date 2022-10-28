@@ -1,9 +1,7 @@
-{% extends 'main.html' %}
-
-{% block content %}
+{% include 'head.html' with  title='CSGO.Supply Loadout Builder' %}
 {% load static %}
+{% include 'navbar.html' %}
 <div class="main">
-
 
     <img src="{% static 'skin_details/img/create_loadouts.svg' %}" class="createloadouts" alt="Logo" height="100">
 
@@ -16,4 +14,3 @@
 
 
 
-{% endblock content %}

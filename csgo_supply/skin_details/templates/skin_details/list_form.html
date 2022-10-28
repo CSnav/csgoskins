@@ -1,13 +1,17 @@
-{% extends 'main.html' %}
-
+{% include 'head.html' with  title='Loadout Builder - CSGO.Supply' %}
+{% load static %}
+{% include 'navbar.html' %}
 {% block content %}
 
 <div style="width: 90%; margin-left:5%; margin-bottom: 75px;" class="weaponslist">
     <div>
     <div class="weaponlistheader"> Loadout Builder </div>
     <form action="" method="post">
+    <div class="listsearch" style="padding-bottom:10px;">
+    <input name="savedlistname" id="savedlistname" placeholder="List Name"> </input>
+    </div>
     <button name="savelist" class="addlistbtn"> Save Loadout </button>
- {% csrf_token %}
+    {% csrf_token %}
     </form>
     </div>
     <hr>

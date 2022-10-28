@@ -1,5 +1,7 @@
-{% extends 'main.html' %}
+{% include 'head.html' with  title='Guns - CSGO.Supply' %}
+{% load static %}
 {% load gun_extras %}
+{% include 'navbar.html' %}
 {% block content %}
 
 
@@ -72,16 +74,16 @@
                         <th style="width: 17%;"><a href=?{% param_replace sort='name' %}>Gun Name</a></th>
                     {% endif %}
 
-                    {% if sort == 'glove_type' %}
+                    {% if sort == 'weapon_type' %}
                         <th style="width: 7%;"><a href=?{% param_replace sort='-weapon_type' %}>Weapon Type</th>
                     {% else %}
                         <th style="width: 7%;"><a href=?{% param_replace sort='weapon_type' %}>Weapon Type</th>
                     {% endif %}
 
                     {% if sort == 'gun_type' %}
-                        <th style="width: 7%;"><a href=?{% param_replace sort='-gun_type' %}>Weapon Type</th>
+                        <th style="width: 7%;"><a href=?{% param_replace sort='-gun_type' %}>Gun Type</th>
                     {% else %}
-                        <th style="width: 7%;"><a href=?{% param_replace sort='gun_type' %}>Weapon Type</th>
+                        <th style="width: 7%;"><a href=?{% param_replace sort='gun_type' %}>eWeapon Gun Type</th>
                     {% endif %}
 
                     {% if sort == 'exterior' %}

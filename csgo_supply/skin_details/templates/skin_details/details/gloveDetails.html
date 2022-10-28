@@ -1,5 +1,6 @@
-{% extends 'main.html' %}
-
+{% include 'head.html' with  title=pagetitle %}
+{% load static %}
+{% include 'navbar.html' %}
 {% block content %}
 <h1> csgo.supply details for {{glove.name}}</h1>
 
