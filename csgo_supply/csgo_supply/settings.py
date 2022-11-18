@@ -23,10 +23,19 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-g*=yanl25i^(y^9-9o=!3+k6jiw6sow&!9!*yi#w0_#%pk5s7s'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
-ALLOWED_HOSTS = ['csgosupply.eba-incwqyjp.us-east-1.elasticbeanstalk.com']
+# SECURE_SSL_REDIRECT = True
+
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = True 
+
+ALLOWED_HOSTS = ['localhost', '*',
+                 'http://csgo-supply.eba-sixqg2m9.us-east-1.elasticbeanstalk.com/',
+                 'https://csgo-supply.eba-sixqg2m9.us-east-1.elasticbeanstalk.com/',
+                 'https://csgo.supply/', 'http://csgo.supply/',
+                 'csgo-supply.eba-sixqg2m9.us-east-1.elasticbeanstalk.com',
+                 'csgo.supply', '172.31.19.33', '3.221.60.252',
+                 'awseb-e-6-awsebloa-1t16wrg1mwpk2-2087794025.us-east-1.elb.amazonaws.com',]
 
 
 # Application definition
@@ -80,10 +89,10 @@ WSGI_APPLICATION = 'csgo_supply.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get("POSTGRES_NAME"),
-        'USER': os.environ.get("POSTGRES_USER"),
-        'PASSWORD': os.environ.get("POSTGRES_PASSWORD"),
-        'HOST': os.environ.get("POSTGRES_URL"),
+        'NAME': "csgosupplydb",
+        'USER': "freshman",
+        'PASSWORD': "hariprabu",
+        'HOST': "csgo-supply.c898ue7ipqbe.us-east-1.rds.amazonaws.com",
         'PORT': '5432',
     }
 }
@@ -124,9 +133,9 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
-
+STATIC_ROOT = 'static' 
 STATIC_URL = '/static/'
-
+# STATICFILES_DIRS = [os.path.join(BASE_DIR, "skin_details/static"), ]
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
